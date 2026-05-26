@@ -1,4 +1,4 @@
-export interface MonitorTarget {
+export interface MonitorTargetConfigItem {
   /**
    * Displayed name of the target. Will be shown in the status bar
    */
@@ -8,4 +8,9 @@ export interface MonitorTarget {
    * You can specify either the accurate name or a function that returns a boolean to determine if a process is the target. For example, you can specify "chrome.exe" or (name) => name.includes("chrome")
    */
   processName: string;
+}
+
+export interface MonitorTarget {
+  name: string;
+  processName: (name: string) => boolean;
 }
