@@ -1,0 +1,107 @@
+{
+  "name": "memory-monitor",
+  "displayName": "Memory Monitor",
+  "description": "Monitor memory usage of specified processes in real-time",
+  "description_zh": "实时监控指定进程的内存使用量",
+  "version": "0.1.0",
+  "purpose": "vscode-extension",
+  "publisher": "KasukabeTsumugi",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "author": {
+    "email": "futami16237@gmail.com",
+    "name": "Kasukabe Tsumugi"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "memory",
+    "monitor",
+    "process",
+    "performance",
+    "system"
+  ],
+  "homepage": "https://github.com/baendlorel/memory-monitor#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/baendlorel/memory-monitor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/baendlorel/memory-monitor/issues"
+  },
+  "license": "MIT",
+  "icon": "assets/icon.png",
+  "galleryBanner": {
+    "color": "#1e1e1e",
+    "theme": "dark"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [],
+    "configuration": {
+      "title": "%configuration.title%",
+      "properties": {
+        "memory-monitor.poll-interval": {
+          "type": "number",
+          "default": 3,
+          "minimum": 1,
+          "description": "%configuration.poll-interval.description%"
+        },
+        "memory-monitor.targets": {
+          "type": "array",
+          "default": [],
+          "description": "%configuration.targets.description%",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "%configuration.targets.name.description%"
+              },
+              "processName": {
+                "type": "string",
+                "description": "%configuration.targets.processName.description%"
+              }
+            },
+            "required": [
+              "name",
+              "processName"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "scripts": {
+    "lines": "clear && find ./src -type f \\( -name \"*.ts\" -o -name \"*.tsx\" -o -name \"*.js\" -o -name \"*.mjs\" -o -name \"*.cjs\" -o -name \"*.cpp\" -o -name \"*.h\" -o -name \"*.py\"  -o -name \"*.css\" -o -name \"*.rs\" -o -name \"*.rc\" \\) | xargs wc -l",
+    "test-build": "vite build --mode development",
+    "build": "vite build",
+    "watch": "vite build --watch --mode development",
+    "check": "tsc --noEmit -p tsconfig.build.json",
+    "lint": "oxlint .",
+    "pub": "vsce package -o ./bin --no-dependencies",
+    "publish": "pnpm build && vsce publish"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^29.0.2",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-replace": "^6.0.3",
+    "@types/node": "^25.9.0",
+    "@vscode/vsce": "^3.9.1",
+    "oxlint": "^1.66.0",
+    "tslib": "^2.8.1",
+    "typescript": "^6.0.3",
+    "vite": "^6.3.5"
+  },
+  "dependencies": {
+    "@types/vscode": "1.74.0",
+    "is-wsl": "^3.1.1",
+    "mem-usage-ts": "^0.1.2",
+    "smol-toml": "^1.6.1"
+  }
+}
