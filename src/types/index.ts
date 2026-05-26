@@ -12,5 +12,8 @@ export interface MonitorTargetConfigItem {
 
 export interface MonitorTarget {
   name: string;
+
   processName: (name: string) => boolean;
+
+  active: boolean;
 }

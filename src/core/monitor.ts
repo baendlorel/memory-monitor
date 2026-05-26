@@ -29,6 +29,10 @@ export class Monitor extends vscode.Disposable {
 
     const updateMarker = (marker: vscode.StatusBarItem, index: number) => {
       const target = this.targets[index];
+      if (!target.active) {
+        return;
+      }
+
       const usageList = this.usages.filter((u) => target.processName(u.processName));
       const usage = formatBytes(usageList.reduce((prev, cur) => (prev += cur.privateMemory ?? cur.memory), 0));
 

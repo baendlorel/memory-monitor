@@ -22,6 +22,7 @@ export const getTargets = (): MonitorTarget[] =>
   config<MonitorTargetConfigItem[]>('targets', []).map((t) => ({
     name: t.name,
     processName: makeMatcher(t.processName),
+    active: false,
   }));
 
 export const getInterval = () => config<number>('poll-interval', 3) * 1000;
